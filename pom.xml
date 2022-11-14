@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>queue.project</groupId>
     <artifactId>QueueProjectProxy</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -53,6 +53,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>5.3.23</version>
+        </dependency>
+
+        <dependency>
+            <groupId>queue.project</groupId>
+            <artifactId>QueueProjectModel</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>
