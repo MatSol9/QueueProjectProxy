@@ -24,14 +24,16 @@ public class QueueController {
     @Value("${queue.config.max-pool}")
     private int maxPool;
     private int usedPools = 0;
+    private int currentQueueSize = 0;
 
     @GetMapping("/data/")
     public BasicEntry getBasicEntry(@RequestBody BasicDataRequest basicDataRequest) throws IOException {
         LOGGER.info("Gettind data for locator: {}", basicDataRequest.getLocator());
         BufferedWriter output = new BufferedWriter(new FileWriter("output.txt", true));
         output.newLine();
-        output.write(Integer.toString(usedPools));
+        output.write(usedPools + ", " + currentQueueSize);
         output.close();
+        currentQueueSize += 1;
         int id = (int) (Math.random() * 10000);
         while (processedIds.contains(id)) {
             id = (int) (Math.random() * 10000);
@@ -43,6 +45,7 @@ public class QueueController {
         ProcessedDataThread processedDataThread = new ProcessedDataThread(processedIds, id);
         processedDataThread.start();
         usedPools += 1;
+        currentQueueSize -= 1;
         while (processedIds.contains(id)) {
 
         }
