@@ -1,2 +1,9 @@
 server:
   port : 8081
+  tomcat:
+    max-connections: 10
+    max-threads: 10
+
+queue:
+  config:
+    max-pool: 10
