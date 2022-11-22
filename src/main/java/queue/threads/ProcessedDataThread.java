@@ -1,20 +1,24 @@
 package queue.threads;
 
+import java.util.Queue;
 import java.util.Set;
 
 public class ProcessedDataThread extends Thread{
-    private Set<Integer> processedData;
-    private final int id;
+    private final Set<Integer> processedData;
+    private final Queue<Integer> queue;
+    private final int processingTime;
 
-    public ProcessedDataThread(Set<Integer> processedData, int id) {
+    public ProcessedDataThread(Set<Integer> processedData, Queue<Integer> ids, int processingTime) {
         this.processedData = processedData;
-        this.id = id;
+        this.queue = ids;
+        this.processingTime = processingTime;
     }
 
     @Override
     public void run() {
+        int id = queue.remove();
         try {
-            Thread.sleep(10000);
+            Thread.sleep(processingTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

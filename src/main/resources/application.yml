@@ -1,9 +1,10 @@
 server:
   port : 8081
   tomcat:
-    max-connections: 10
-    max-threads: 10
+    max-connections: 1000
+    max-threads: 1000
 
 queue:
   config:
     max-pool: 10
+    processingTime: 10000
